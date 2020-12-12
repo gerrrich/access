@@ -1,0 +1,7 @@
+sqlalchemy.orm
+sqlalchemy
+flask_login
+random
+flask
+flask_sqlalchemy
+werkzeug.security

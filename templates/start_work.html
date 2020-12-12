@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Начать занятие
+{% endblock %}
+
+{% block body %}
+<form action="/start_work" method="post" class="form-contact">
+    <p><b>Выберете предмет:</b>
+        <select name="subjects">
+            {% for sub, i in subjects %}
+                <option value="{{i}}" >{{sub}}</option>
+            {% endfor %}
+        </select>
+    <p><b>Выберете тип занятия:</b>
+    <p><input type="radio" name="type" value="1" checked/> Лекция
+        <input type="radio" name="type" value="0" /> Семинар
+    <p><b>Выберете как будет проходить занятие:</b>
+    <p><input type="radio" name="how" value="1" checked/> Очно
+        <input type="radio" name="how" value="0"  /> Онлайн
+    <p><b>Выберете тему занятия:</b>
+    <p><input maxlength="50" size=50" name="topic"  placeholder="Не обязательно">
+    <p><b>Через сколько минут после начала занятия студент считается опоздавшим:</b>
+    <p><input type="range" name="late_time" min="5" max="30" step="5" value="15" onchange="document.getElementById('rangeValue').innerHTML = this.value;" list="rangeList">
+    <b id="rangeValue">15</b><b> мин</b>
+    <datalist id="rangeList">
+        <option value="5" label="5">
+        <option value="10" label="10">
+        <option value="15" label="15">
+        <option value="20" label="20">
+        <option value="25" label="25">
+        <option value="30" label="30">
+    </datalist>
+    <p><input type="submit" value="Начать занятие" />
+</form>
+{% endblock %}
