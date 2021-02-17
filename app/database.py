@@ -30,7 +30,7 @@ class Admin(db.Model, UserMixin):
         return self.__user.id
 
     def __repr__(self):
-        return f"<account {self.id}>"
+        return '1'
 
 
 class Teacher(db.Model, UserMixin):
@@ -49,8 +49,11 @@ class Teacher(db.Model, UserMixin):
     def get_id(self):
         return self.__user.id
 
+    def show_id(self):
+        return self.id
+
     def __repr__(self):
-        return f"<account {self.id}>"
+        return '3'
 
 
 class Student(db.Model, UserMixin):
@@ -66,10 +69,10 @@ class Student(db.Model, UserMixin):
         return self
 
     def get_id(self):
-        return self.__user.id
+        return int(self.__user.id)
 
     def __repr__(self):
-        return f"<account {self.id}>"
+        return '2'
 
 
 class Subject(db.Model):
@@ -87,6 +90,9 @@ class Lesson(db.Model):
     format = db.Column(db.Boolean, nullable=False)
     topic = db.Column(db.String(100), nullable=True)
     late_time = db.Column(db.Integer, nullable=False)
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    date = db.Column(db.Date, nullable=False)
     subject = db.Column(db.Integer, ForeignKey('Subject.id'), nullable=False)
     teacher = db.Column(db.Integer, ForeignKey('Teacher.id'), nullable=False)
     students = relationship('Student', secondary=Lesson_Students)
